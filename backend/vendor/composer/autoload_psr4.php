@@ -15,7 +15,7 @@ return array(
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-factory/src', $vendorDir . '/psr/http-message/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Middlewares\\Utils\\' => array($vendorDir . '/middlewares/utils/src'),
-    'Middlewares\\' => array($vendorDir . '/middlewares/fast-route/src', $vendorDir . '/middlewares/request-handler/src'),
+    'Middlewares\\' => array($vendorDir . '/middlewares/request-handler/src', $vendorDir . '/middlewares/fast-route/src'),
     'Laravel\\SerializableClosure\\' => array($vendorDir . '/laravel/serializable-closure/src'),
     'Laminas\\Diactoros\\' => array($vendorDir . '/laminas/laminas-diactoros/src'),
     'Invoker\\' => array($vendorDir . '/php-di/invoker/src'),

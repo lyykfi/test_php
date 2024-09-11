@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit23720c0b730a167aead41cfe32d98b51
+class ComposerStaticInit2f5c90bbe6e5418b390ce2f7401856e6
 {
     public static $files = array (
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
@@ -115,8 +115,8 @@ class ComposerStaticInit23720c0b730a167aead41cfe32d98b51
         ),
         'Middlewares\\' => 
         array (
-            0 => __DIR__ . '/..' . '/middlewares/fast-route/src',
-            1 => __DIR__ . '/..' . '/middlewares/request-handler/src',
+            0 => __DIR__ . '/..' . '/middlewares/request-handler/src',
+            1 => __DIR__ . '/..' . '/middlewares/fast-route/src',
         ),
         'Laravel\\SerializableClosure\\' => 
         array (
@@ -164,9 +164,9 @@ class ComposerStaticInit23720c0b730a167aead41cfe32d98b51
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit23720c0b730a167aead41cfe32d98b51::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit23720c0b730a167aead41cfe32d98b51::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit23720c0b730a167aead41cfe32d98b51::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit2f5c90bbe6e5418b390ce2f7401856e6::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit2f5c90bbe6e5418b390ce2f7401856e6::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit2f5c90bbe6e5418b390ce2f7401856e6::$classMap;
 
         }, null, ClassLoader::class);
     }

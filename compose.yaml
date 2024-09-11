@@ -1,0 +1,38 @@
+services:
+  server:
+    build:
+      context: ./backend
+    ports:
+      - 9000:80
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DB_HOST=db
+      - DB_NAME=example
+      - DB_USER=root
+    volumes:
+      - ./backend/:/var/www/html/
+  db:
+    image: mariadb
+    restart: always
+    user: root
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+    expose:
+      - 3306
+    healthcheck:
+      test:  ["CMD", "/usr/local/bin/healthcheck.sh", "--su-mysql", "--connect",  "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+secrets:
+  db_secret:
+    file: ./secrets/db.txt
+
+volumes:
+  db-data:

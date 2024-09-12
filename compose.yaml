@@ -1,5 +1,7 @@
 services:
   server:
+    networks:
+      - backend
     build:
       context: ./backend
     ports:
@@ -8,22 +10,28 @@ services:
       db:
         condition: service_healthy
     environment:
-      - DB_HOST=db
-      - DB_NAME=example
-      - DB_USER=root
+      DATABASE_URL: 'mysql:dbname=task;host=db'
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     volumes:
       - ./backend/:/var/www/html/
   db:
+    container_name: db  
+    networks:
+      - backend
     image: mariadb
     restart: always
     user: root
     volumes:
       - db-data:/var/lib/mysql
+      - .docker/setup.sql:/docker-entrypoint-initdb.d/setup.sql
     environment:
-      - MARIADB_DATABASE=${MARIADB_DATABASE}
-      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
-    expose:
-      - 3306
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+    ports:
+      - '3306:3306'
     healthcheck:
       test:  ["CMD", "/usr/local/bin/healthcheck.sh", "--su-mysql", "--connect",  "--innodb_initialized"]
       interval: 10s
@@ -36,3 +44,6 @@ secrets:
 
 volumes:
   db-data:
+
+networks:
+  backend:

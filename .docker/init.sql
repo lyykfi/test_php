@@ -5,7 +5,6 @@ GRANT ALL ON `task`.* TO 'user'@'%';
 
 FLUSH PRIVILEGES;
 
-
 CREATE TABLE IF NOT EXISTS `task` (
   `id` int(11) NOT NULL auto_increment,   
   `title` varchar(250)  NOT NULL default '',
@@ -15,3 +14,4 @@ CREATE TABLE IF NOT EXISTS `task` (
   `data` TIMESTAMP NOT NULL,
    PRIMARY KEY  (`id`)
 );
+ALTER TABLE task CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;

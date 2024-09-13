@@ -15,8 +15,11 @@ class TaskList
     }
     public function __invoke()
     {
-        $db = $this->db->getDb();
+        $pdo = $this->db->getDb();
 
-        echo "Hello, world!";
+        $stmt = $pdo->query("SELECT * FROM task");
+
+        header('Content-Type: application/json;charset=utf-8');  
+        echo json_encode($stmt->fetchAll(), JSON_UNESCAPED_UNICODE);
     }
 }

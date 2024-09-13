@@ -41,8 +41,6 @@ class App {
 
         $stmt = $pdo->query("SELECT * FROM task");
 
-        var_dump($stmt->rowCount());
-
         if($stmt->rowCount() == 0) {
             App::seedTasks($pdo);
         }

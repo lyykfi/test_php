@@ -4,25 +4,22 @@ namespace App\Controller\Task;
 
 require __DIR__ . '/../../../vendor/autoload.php';
 
-use App\Database;
+use App\Services\TaskService;
 
 class TaskItem
 {
-    private $db;
+    private $taskService;
 
     public function __construct()
     {
-        $this->db = Database::getInstance();
+        $this->taskService = new TaskService();
     }
-    public function __invoke()
-    {
-        $pdo = $this->db->getPDO();
-
-        $stmt = $pdo->prepare("SELECT * FROM task WHERE id=:id");
-        $stmt->execute(['id' => $_GET['task']]);
+    public function __invoke(): void
+    {   
+        $task = $this->taskService->getTaskById(intval($_GET['task']));
 
         header('Content-Type: application/json;charset=utf-8');  
-        echo json_encode($stmt->fetch(\PDO::FETCH_ASSOC), JSON_UNESCAPED_UNICODE);
+        echo json_encode($task, JSON_UNESCAPED_UNICODE);
     }
 }
 

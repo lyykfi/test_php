@@ -8,7 +8,7 @@ use PDOException;
 class Database {
     private $pdo;
 
-    public static function getInstance() {
+    public static function getInstance(): Database {
         static $instance = null;
 
         if (null === $instance) {
@@ -29,7 +29,7 @@ class Database {
         return $instance;
     }
 
-    public function getPDO() {
+    public function getPDO(): PDO {
         return $this->pdo;
     }
 

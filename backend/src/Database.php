@@ -6,21 +6,43 @@ use PDO;
 use PDOException;   
 
 class Database {
-    private $db;
+    private $pdo;
 
-    public function getDb() {
-        try {
-            if (!$this->db) {
+    public static function getInstance() {
+        static $instance = null;
+
+        if (null === $instance) {
+            try {
+                $instance = new self;
+
                 $db = getenv('DATABASE_URL');
                 $user = getenv('MARIADB_USER');
                 $password = getenv('MARIADB_PASSWORD');
 
-                $this->db = new PDO($db, $user, $password);
-            }
+                $instance->pdo = new PDO($db, $user, $password);
 
-            return $this->db;
-        } catch (PDOException $e) {
-            die($e->getMessage());
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
         }
+
+        return $instance;
     }
+
+    public function getPDO() {
+        return $this->pdo;
+    }
+
+    protected function __construct()
+    {
+    }
+
+    final private function __clone()
+    {
+    }
+
+    final private function __wakeup()
+    {
+    }
+
 }

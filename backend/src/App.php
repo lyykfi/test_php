@@ -11,14 +11,14 @@ class App {
 
     public function __construct(Database $db)
     {
-        $this->db = $db;
+        $this->db = Database::getInstance();
     }
 
     public static function seedTasks(PDO $pdo) {
         $sql = "INSERT INTO `task` (`title`, `data`, `author`, `status`, `description`) VALUES (:title, :data, :author, :status, :description)";
         $date = new DateTime();
 
-        for($i = 0; $i < 1000; $i++) {
+        for($i = 1; $i <= 1000; $i++) {
             if ($i != 0) {
                 $date->add(new \DateInterval('PT1H'));
             }
@@ -37,7 +37,7 @@ class App {
     }
 
     public function seeds() {
-        $pdo = $this->db->getDb();
+        $pdo = $this->db->getPDO();
 
         $stmt = $pdo->query("SELECT * FROM task");
 

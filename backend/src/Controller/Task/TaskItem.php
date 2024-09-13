@@ -5,7 +5,7 @@ namespace App\Controller\Task;
 
 use App\Database;
 
-class TaskList
+class TaskItem
 {
     private $db;
 

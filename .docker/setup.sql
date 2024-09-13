@@ -1,6 +1,0 @@
--- create the databases
-CREATE DATABASE IF NOT EXISTS task;
-
-GRANT ALL PRIVILEGES ON *.* TO 'user'@'%' IDENTIFIED BY "Password";
-
-FLUSH PRIVILEGES;

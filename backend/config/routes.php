@@ -5,4 +5,5 @@ use function FastRoute\simpleDispatcher;
 
 return simpleDispatcher(function (RouteCollector $r) {
     $r->addRoute('GET', '/api/v1/task', App\Controller\Task\TaskList::class);
+    $r->addRoute('GET', '/api/v1/task/:id', App\Controller\Task\TaskItem::class);
 });

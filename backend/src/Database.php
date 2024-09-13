@@ -11,10 +11,11 @@ class Database {
     public function getDb() {
         try {
             if (!$this->db) {
-                $this->db = new PDO(
-                getenv('DATABASE_URL'), 
-                getenv('MARIADB_USER'), 
-                getenv('MARIADB_PASSWORD'));
+                $db = getenv('DATABASE_URL');
+                $user = getenv('MARIADB_USER');
+                $password = getenv('MARIADB_PASSWORD');
+
+                $this->db = new PDO($db, $user, $password);
             }
 
             return $this->db;

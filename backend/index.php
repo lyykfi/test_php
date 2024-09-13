@@ -18,4 +18,9 @@ $requestHandler = new Relay($middleware);
 $response = $requestHandler->handle(ServerRequestFactory::fromGlobals());
 $emitter = new SapiEmitter();
 
+
+$app = $container->get(App\App::class);
+
+$app->seeds();
+
 return $emitter->emit($response);

@@ -16,9 +16,13 @@ class TaskItem
     }
     public function __invoke()
     {
-        $db = $this->db->getPDO();
+        $pdo = $this->db->getPDO();
 
-        echo "Hello, world!";
+        $stmt = $pdo->prepare("SELECT * FROM task WHERE id=:id");
+        $stmt->execute(['id' => $_GET['task']]);
+
+        header('Content-Type: application/json;charset=utf-8');  
+        echo json_encode($stmt->fetch(\PDO::FETCH_ASSOC), JSON_UNESCAPED_UNICODE);
     }
 }
 

@@ -32,8 +32,11 @@ class TaskList
     public function __invoke(): void
     {
         $this->seeds();
-        
-        $tasks = $this->taskService->getAllTasks();
+
+        $tasks = $this->taskService->getAllTasksWithPagination(
+            intval($_GET['page']),
+            intval($_GET['size'])
+        );
 
         header('Content-Type: application/json;charset=utf-8');  
         echo json_encode($tasks, JSON_UNESCAPED_UNICODE);

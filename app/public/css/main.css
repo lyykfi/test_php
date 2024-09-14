@@ -1,0 +1,29 @@
+#main {
+    margin: 3% auto;
+    width: 80%;
+}
+
+body {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; 
+}
+
+/** search form **/
+#search-form {
+    max-width: 900px;
+    margin: 0px auto;
+}
+
+#search-form input {
+    width: 100%;
+    padding: 5px 10px;
+}
+
+/** tasks **/
+#tasks {
+
+}
+
+#tasks .loading {
+    padding-top: 1%;
+    text-align: center;
+}

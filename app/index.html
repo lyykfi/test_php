@@ -6,12 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title></title>
+    <link rel="stylesheet" href="/public/css/reset.css" />
     <link rel="stylesheet" href="/public/css/main.css" />
   </head>
 
   <body>
-    <script src="/public/js/main.js"></script>
+    <div id="main">
+      <section id="search-form">
+        <form>
+          <input type="text" placeholder="Поиск" />
+        </form>
+      </section>
 
-    sdf
+      <section id="tasks"></section>
+    </div>
+    <script type="module" src="/public/js/config.mjs"></script>
+    <script type="module" src="/public/js/main.mjs"></script>
   </body>
 </html>

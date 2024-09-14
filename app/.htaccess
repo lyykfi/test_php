@@ -1,11 +1,12 @@
 Options -Indexes
 
 RewriteEngine On
-RewriteCond %{QUERY_STRING} ^$
 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
 
-
-RewriteRule ^api/v1/task$ /src/Controller/Task/TaskList.php? [L]
+RewriteRule ^api/v1/task?(.*)$ /src/Controller/Task/TaskList.php?$1 [QSA,L]
 RewriteRule ^api/v1/task/(.+)$ "/src/Controller/Task/TaskItem.php?task=$1" [L]
 
-FallbackResource /public/index.html
+FallbackResource /public/index.html 
+

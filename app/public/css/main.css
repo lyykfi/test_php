@@ -38,6 +38,14 @@ body {
     font-weight: bold;
 }
 
+#tasks table tbody tr {
+    cursor: pointer;
+}
+
+#tasks table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
 #tasks .loading {
     padding-top: 1%;
     text-align: center;

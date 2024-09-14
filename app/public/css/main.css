@@ -20,7 +20,22 @@ body {
 
 /** tasks **/
 #tasks {
+    margin-top: 3rem;
+}
 
+#tasks table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tasks table td {
+    border: 1px solid #000;
+    text-align: center;
+    padding: 5px;
+}
+
+#tasks table thead td {
+    font-weight: bold;
 }
 
 #tasks .loading {

@@ -71,7 +71,7 @@ class TasksWidget extends Widget {
             row.appendChild(td2);
             row.appendChild(td3);
 
-            tbody.appendChild(row);
+            tbody.appendChild(row); 
         });
 
 

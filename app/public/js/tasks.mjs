@@ -2,10 +2,11 @@ import Widget from './widget.mjs';
 import config from './config.mjs';
 
 class TasksWidget extends Widget {
-    async #fetch () {
+    async #fetch (search) {
         const params = new URLSearchParams({ 
             page: config.globalScope.page, 
-            size: config.TASKS_PAGE_SIZE 
+            size: config.TASKS_PAGE_SIZE,
+            title: search
         });
 
         const res = await fetch(`${config.TASK_API_PATH}?${params.toString()}`);
@@ -51,8 +52,6 @@ class TasksWidget extends Widget {
 
         const rowsBinded = this.root.querySelectorAll('tbody tr');
         rowsBinded.forEach((item) => {
-            console.log(item);
-
             item.addEventListener('click', (data) => {
                 const customEvent = new CustomEvent('row-click', { detail: item.dataset.id });
 
@@ -61,9 +60,9 @@ class TasksWidget extends Widget {
         });
     }
 
-    async render() {
+    async render(search) {
         this.#loadingScene();
-        const tasks = await this.#fetch();
+        const tasks = await this.#fetch(search);
         
         this.#tableScene(tasks);
     }

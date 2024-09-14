@@ -51,6 +51,7 @@ body {
     text-align: center;
 }
 
+/** popup **/
 #popup .wrapper {
     position: absolute;
     width: 100%;
@@ -79,4 +80,17 @@ body {
 
 #popup section ul {
     list-style: none;
+}
+
+#popup section ul li {
+    margin-bottom: 10px;
+}
+
+#popup section ul li strong {
+    display: inline-block;
+    width: 50%;
+}
+
+#popup button {
+    cursor: pointer;
 }

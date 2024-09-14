@@ -35,7 +35,8 @@ class TaskList
 
         $tasks = $this->taskService->getAllTasksWithPagination(
             intval($_GET['page']),
-            intval($_GET['size'])
+            intval($_GET['size']),
+            $_GET['title']
         );
 
         header('Content-Type: application/json;charset=utf-8');  

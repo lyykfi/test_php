@@ -4,6 +4,7 @@ import config from './config.mjs';
 class PopupWidget extends Widget {
     async #fetch (id) {
         const res = await fetch(`${config.TASK_API_PATH}/${id}`);
+
         return await res.json();
     }
 
@@ -29,10 +30,26 @@ class PopupWidget extends Widget {
         const html = parser.parseFromString(domString, 'text/html');
 
         this.root.replaceChildren(html.body.firstChild);
+
+        const button = this.root.querySelector('button');
+
+        button.addEventListener('click', () => {
+            this.#close();
+        })
+    }
+
+    #close() {
+        this.root.replaceChildren();
     }
 
     async render(id) {
-        const task = await this.#fetch(id);
+        let task = config.globalScope.cachedTasks.get(id);
+
+        if (!task) {
+            task = await this.#fetch(id);
+
+            config.globalScope.cachedTasks.set(id, task);
+        }
         
         this.#tableScene(task);
     }

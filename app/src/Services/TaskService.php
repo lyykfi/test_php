@@ -15,18 +15,19 @@ class TaskService {
         $this->pdo = $this->db->getPDO();
     }
 
-    public function getAllTasksWithPagination(int $page, int $size): array {
+    public function getAllTasksWithPagination(int $page, int $size, string $title): array {
         $skip = ($page - 1) * $size;
 
         $stmt = $this->pdo->prepare("
             SELECT `id`, `title`, `data`
             FROM task 
-            WHERE id > :skip 
+            WHERE id > :skip AND LOCATE(:title, title)
             ORDER BY `id` ASC
             LIMIT :limit");
 
         $stmt->bindParam('limit', $size, \PDO::PARAM_INT);
         $stmt->bindParam('skip', $skip, \PDO::PARAM_INT);
+        $stmt->bindParam('title', $title, \PDO::PARAM_STR);
 
         $stmt->execute();
 

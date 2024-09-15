@@ -14,5 +14,5 @@ CREATE TABLE IF NOT EXISTS `task` (
   `data` TIMESTAMP NOT NULL,
   PRIMARY KEY  (`id`)
 );
-ALTER table `task` ADD INDEX title_idx (`title`, `id`);
+ALTER table `task` ADD INDEX title_idx (`title`);
 ALTER TABLE `task` CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;

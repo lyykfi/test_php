@@ -28,9 +28,6 @@ class TasksWidget extends Widget {
         const totalRow = tasks.total_row;
         const paginationWindow = 5;
         const pages = Math.ceil(totalRow / config.TASKS_PAGE_SIZE);
-
-        console.log(totalRow);
-        console.log(pages);
         
         if (config.globalScope.page !== 1 && pages > 1) {
             pagination += `<span class="first" data-page="1">&lt;&lt;</span>`
@@ -49,7 +46,7 @@ class TasksWidget extends Widget {
             }
         }
 
-        if (pages - paginationWindow > config.globalScope.page) {
+        if (pages > config.globalScope.page) {
             pagination += `<span class="last" data-page="${pages}">&gt;&gt;</span>`
         }
     

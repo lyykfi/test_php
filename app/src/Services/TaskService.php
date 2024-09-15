@@ -19,11 +19,12 @@ class TaskService {
         $skip = ($page - 1) * $size;
 
         $stmt = $this->pdo->prepare("
-            SELECT `id`, `title`, `data`
+            SELECT `id`, `title`, `data`,
+                (SELECT COUNT(*) FROM `task` WHERE LOCATE(:title, title)) AS total_row
             FROM task 
-            WHERE id > :skip AND LOCATE(:title, title)
+            WHERE LOCATE(:title, title)
             ORDER BY `id` ASC
-            LIMIT :limit");
+            LIMIT :limit OFFSET :skip");
 
         $stmt->bindParam('limit', $size, \PDO::PARAM_INT);
         $stmt->bindParam('skip', $skip, \PDO::PARAM_INT);

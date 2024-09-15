@@ -39,8 +39,11 @@ class TaskList
             $_GET['title']
         );
 
+
         header('Content-Type: application/json;charset=utf-8');  
-        echo json_encode($tasks, JSON_UNESCAPED_UNICODE);
+        echo json_encode(
+            ['total_row' => $tasks[0]['total_row'], 'tasks' => $tasks], 
+            JSON_UNESCAPED_UNICODE);
     }
 }
 

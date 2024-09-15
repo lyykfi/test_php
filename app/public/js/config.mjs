@@ -6,6 +6,7 @@ const TASKS_PAGE_SIZE = 10;
 const globalScope = {
     page: 1,
     cachedTasks: new Map(),
+    search: '',
 }
 
 export default {

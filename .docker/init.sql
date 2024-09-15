@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `task` (
   `status` varchar(250)  NOT NULL default 0,    
   `description` TEXT NOT NULL default '',
   `data` TIMESTAMP NOT NULL,
-  FULLTEXT (`title`),
   PRIMARY KEY  (`id`)
 );
-ALTER TABLE task CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER table `task` ADD INDEX title_idx (`title`, `id`);
+ALTER TABLE `task` CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
